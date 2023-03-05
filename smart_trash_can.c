@@ -1,32 +1,6 @@
-/*
-¸ÐÓ¦¿ª¹Ø¸ÇÀ¬»øÍ°
-ÏîÄ¿¸ÅÊö
-1¹¦ÄÜÃèÊö
-¼ì²â¿¿½üÊ±£¬À¬»øÍ°×Ô¶¯¿ª¸Ç²¢°éËæµÎÒ»Éù£¬2Ãëºó¹Ø¸Ç
-·¢ÉúÕð¶¯Ê±£¬À¬»øÍ°×Ô¶¯¿ª¸Ç²¢°éËæµÎÒ»Éù£¬2Ãëºó¹Ø¸Ç
-°´ÏÂ°´¼üÊ±£¬À¬»øÍ°×Ô¶¯¿ª¸Ç²¢°éËæµÎÒ»Éù£¬2Ãëºó¹Ø¸Ç
-Ó²¼þËµÃ÷
-SG90¶æ»ú£¬³¬Éù²¨Ä£¿é£¬Õð¶¯´«¸ÐÆ÷£¬·äÃùÆ÷
-½ÓÏßËµÃ÷
-¶æ»ú¿ØÖÆ¿Ú P1.1£»³¬Éù²¨Trig½Ó P1.5 ,Echo½Ó P1.6 £»·äÃùÆ÷½Ó P2.0 ¿Ú; Õð¶¯´«¸ÐÆ÷½Ó P3.2`¿Ú(Íâ²¿ÖÐ¶Ï0)
-2±à³ÌÊµÏÖ
-¿ª·¢²½Öè£º
-1. ¶æ»úºÍ³¬Éù²¨´úÂëÕûºÏ
-¶æ»úÓÃ¶¨Ê±Æ÷0
-³¬Éù²¨ÓÃ¶¨Ê±Æ÷1
-ÊµÏÖÎïÌå¿¿½üºó£¬×Ô¶¯¿ª¸Ç£¬2Ãëºó¹Ø¸Ç
-2. ²éÑ¯µÄ·½Ê½Ìí¼Ó°´¼ü¿ØÖÆ
-3. ²éÑ¯µÄ·½Ê½Ìí¼ÓÕð¶¯¿ØÖÆ
-4. Ê¹ÓÃÍâ²¿ÖÐ¶Ï0ÅäºÏÕð¶¯¿ØÖÆ
-*/
-/*
-¼ì²â¿¿½üÊ±£¬À¬»øÍ°×Ô¶¯¿ª¸Ç²¢°éËæµÎÒ»Éù£¬2Ãëºó¹Ø¸Ç
-·¢ÉúÕð¶¯Ê±£¬À¬»øÍ°×Ô¶¯¿ª¸Ç²¢°éËæµÎÒ»Éù£¬2Ãëºó¹Ø¸Ç
-°´ÏÂ°´¼üÊ±£¬À¬»øÍ°×Ô¶¯¿ª¸Ç²¢°éËæµÎÒ»Éù£¬2Ãëºó¹Ø¸Ç
-*/
 #include "reg52.h"
-sbit D5 = P3^7;//¸ù¾ÝÔ­ÀíÍ¼£¨µçÂ·Í¼£©£¬Éè±¸±äÁ¿led1Ö¸ÏòP3×éIO¿ÚµÄµÚ7¿Ú
-sbit D6 = P3^6;//Éè±¸±äÁ¿led2Ö¸ÏòP3×éIO¿ÚµÄµÚ6¿Ú
+sbit D5 = P3^7;//æ ¹æ®åŽŸç†å›¾ï¼ˆç”µè·¯å›¾ï¼‰ï¼Œè®¾å¤‡å˜é‡led1æŒ‡å‘P3ç»„IOå£çš„ç¬¬7å£
+sbit D6 = P3^6;//è®¾å¤‡å˜é‡led2æŒ‡å‘P3ç»„IOå£çš„ç¬¬6å£
 sbit SW1 = P2^1;
 sbit Trig = P1^5;
 sbit Echo = P1^6;
@@ -69,27 +43,27 @@ void Delay10us() //@11.0592MHz
 }
 void Time0Init()
 {
-//1. ÅäÖÃ¶¨Ê±Æ÷0¹¤×÷Ä£Ê½Î»16Î»¼ÆÊ±
-	TMOD &= 0xF0; //ÉèÖÃ¶¨Ê±Æ÷Ä£Ê½
+//1. é…ç½®å®šæ—¶å™¨0å·¥ä½œæ¨¡å¼ä½16ä½è®¡æ—¶
+	TMOD &= 0xF0; //è®¾ç½®å®šæ—¶å™¨æ¨¡å¼
 	TMOD |= 0x01;
-//2. ¸ø³õÖµ£¬¶¨Ò»¸ö0.5³öÀ´
+//2. ç»™åˆå€¼ï¼Œå®šä¸€ä¸ª0.5å‡ºæ¥
 	TL0=0x33;
 	TH0=0xFE;
-//3. ¿ªÊ¼¼ÆÊ±
+//3. å¼€å§‹è®¡æ—¶
 	TR0 = 1;
 	TF0 = 0;
-//4. ´ò¿ª¶¨Ê±Æ÷0ÖÐ¶Ï
+//4. æ‰“å¼€å®šæ—¶å™¨0ä¸­æ–­
 	ET0 = 1;
-//5. ´ò¿ª×ÜÖÐ¶ÏEA
+//5. æ‰“å¼€æ€»ä¸­æ–­EA
 	EA = 1;
 }
 void Time1Init()
 {
-	TMOD &= 0x0F; //ÉèÖÃ¶¨Ê±Æ÷Ä£Ê½
+	TMOD &= 0x0F; //è®¾ç½®å®šæ—¶å™¨æ¨¡å¼
 	TMOD |= 0x10;
 	TH1 = 0;
 	TL1 = 0;
-//ÉèÖÃ¶¨Ê±Æ÷0¹¤×÷Ä£Ê½1£¬³õÊ¼ÖµÉè¶¨0¿ªÊ¼ÊýÊý£¬²»×Å¼±Æô¶¯¶¨Ê±Æ÷
+//è®¾ç½®å®šæ—¶å™¨0å·¥ä½œæ¨¡å¼1ï¼Œåˆå§‹å€¼è®¾å®š0å¼€å§‹æ•°æ•°ï¼Œä¸ç€æ€¥å¯åŠ¨å®šæ—¶å™¨
 }
 void startHC()
 {
@@ -101,22 +75,22 @@ void startHC()
 double get_distance()
 {
 	double time;
-//¶¨Ê±Æ÷Êý¾ÝÇåÁã£¬ÒÔ±ãÏÂÒ»´Î²â¾à
+//å®šæ—¶å™¨æ•°æ®æ¸…é›¶ï¼Œä»¥ä¾¿ä¸‹ä¸€æ¬¡æµ‹è·
 	TH1 = 0;
 	TL1 = 0;
-//1. Trig £¬¸øTrig¶Ë¿ÚÖÁÉÙ10usµÄ¸ßµçÆ½
+//1. Trig ï¼Œç»™Trigç«¯å£è‡³å°‘10usçš„é«˜ç”µå¹³
 	startHC();
-//2. echoÓÉµÍµçÆ½Ìø×ªµ½¸ßµçÆ½£¬±íÊ¾¿ªÊ¼·¢ËÍ²¨
+//2. echoç”±ä½Žç”µå¹³è·³è½¬åˆ°é«˜ç”µå¹³ï¼Œè¡¨ç¤ºå¼€å§‹å‘é€æ³¢
 	while(Echo == 0);
-//²¨·¢³öÈ¥µÄÄÇÒ»ÏÂ£¬¿ªÊ¼Æô¶¯¶¨Ê±Æ÷
+//æ³¢å‘å‡ºåŽ»çš„é‚£ä¸€ä¸‹ï¼Œå¼€å§‹å¯åŠ¨å®šæ—¶å™¨
 	TR1 = 1;
-//3. ÓÉ¸ßµçÆ½Ìø×ª»ØµÍµçÆ½£¬±íÊ¾²¨»ØÀ´ÁË
+//3. ç”±é«˜ç”µå¹³è·³è½¬å›žä½Žç”µå¹³ï¼Œè¡¨ç¤ºæ³¢å›žæ¥äº†
 	while(Echo == 1);
-//²¨»ØÀ´µÄÄÇÒ»ÏÂ£¬Í£Ö¹¶¨Ê±Æ÷
+//æ³¢å›žæ¥çš„é‚£ä¸€ä¸‹ï¼Œåœæ­¢å®šæ—¶å™¨
 	TR1 = 0;
-//4. ¼ÆËã³öÖÐ¼ä¾­¹ý¶àÉÙÊ±¼ä
-	time = (TH1 * 256 + TL1)*1.085;//usÎªµ¥Î»
-//5. ¾àÀë = ËÙ¶È £¨340m/s£©* Ê±¼ä/2
+//4. è®¡ç®—å‡ºä¸­é—´ç»è¿‡å¤šå°‘æ—¶é—´
+	time = (TH1 * 256 + TL1)*1.085;//usä¸ºå•ä½
+//5. è·ç¦» = é€Ÿåº¦ ï¼ˆ340m/sï¼‰* æ—¶é—´/2
 	return (time * 0.017);
 }
 void openStatusLight()
@@ -131,15 +105,15 @@ void closeStatusLight()
 }
 void initSG90_0()
 {
-	jd = 1; ???//³õÊ¼½Ç¶ÈÊÇ0¶È£¬0.5ms,Òç³ö1¾ÍÊÇ0.5£¬¸ßµçÆ½
+	jd = 1; ???//åˆå§‹è§’åº¦æ˜¯0åº¦ï¼Œ0.5ms,æº¢å‡º1å°±æ˜¯0.5ï¼Œé«˜ç”µå¹³
 	cnt = 0;
-	sg90_con = 1;//Ò»¿ªÊ¼´Ó¸ßµçÆ½¿ªÊ¼
+	sg90_con = 1;//ä¸€å¼€å§‹ä»Žé«˜ç”µå¹³å¼€å§‹
 }
 void openDusbin()
 {
 	char n;
-	jd = 3; //90¶È 1.5ms¸ßµçÆ½
-	 //¶æ»ú¿ª¸Ç
+	jd = 3; //90åº¦ 1.5msé«˜ç”µå¹³
+	 //èˆµæœºå¼€ç›–
 	if(jd_bak != jd){
 		cnt = 0;
 		beep = 0;
@@ -152,17 +126,17 @@ void openDusbin()
 }
 void closeDusbin()
 {
-//¹Ø¸Ç
-	jd = 1; //0¶È
+//å…³ç›–
+	jd = 1; //0åº¦
 	jd_bak = jd;
 	cnt = 0;
 	Delay150ms();
 }
 void EX0_Init()
 {
-//´ò¿ªÍâ²¿ÖÐ¶Ï
+//æ‰“å¼€å¤–éƒ¨ä¸­æ–­
 	EX0 = 1;
-//µÍµçÆ½´¥·¢
+//ä½Žç”µå¹³è§¦å‘
 	IT0 = 0;
 }
 void main()
@@ -171,18 +145,18 @@ void main()
 	Time0Init();
 	Time1Init();
 	EX0_Init();
-//¶æ»úµÄ³õÊ¼Î»ÖÃ
+//èˆµæœºçš„åˆå§‹ä½ç½®
 	initSG90_0();
 	while(1){
-//³¬Éù²¨²â¾à
+//è¶…å£°æ³¢æµ‹è·
 	dis = get_distance();
-	if(dis < 10 || SW1 == 0 || mark_vibrate == 1){//Èç¹ûÐ¡ÓÚ10ÀåÃ×,»òÕßsw1°´¼ü±»°´ÏÂ
-//¿ª¸Ç£¬µÆ×´Ì¬£¬D5ÁÁ
+	if(dis < 10 || SW1 == 0 || mark_vibrate == 1){//å¦‚æžœå°äºŽ10åŽ˜ç±³,æˆ–è€…sw1æŒ‰é”®è¢«æŒ‰ä¸‹
+//å¼€ç›–ï¼Œç¯çŠ¶æ€ï¼ŒD5äº®
 		openStatusLight();
 		openDusbin();
 		mark_vibrate = 0;
 		}else{
-//¹Ø¸Ç£¬µÆ×´Ì¬£¬D5Ãð
+//å…³ç›–ï¼Œç¯çŠ¶æ€ï¼ŒD5ç­
 		closeStatusLight();
 		closeDusbin();
 		}
@@ -190,18 +164,18 @@ void main()
 }
 void Time0Handler() interrupt 1
 {
-	cnt++; //Í³¼Æ±¬±íµÄ´ÎÊý. cnt=1µÄÊ±ºò£¬±¨±íÁË1
-	//ÖØÐÂ¸ø³õÖµ
+	cnt++; //ç»Ÿè®¡çˆ†è¡¨çš„æ¬¡æ•°. cnt=1çš„æ—¶å€™ï¼ŒæŠ¥è¡¨äº†1
+	//é‡æ–°ç»™åˆå€¼
 	TL0=0x33;
 	TH0=0xFE;
-	//¿ØÖÆPWM²¨
+	//æŽ§åˆ¶PWMæ³¢
 	if(cnt < jd){
 		sg90_con = 1;
 		}else{
 		sg90_con = 0;
 	}
-	if(cnt == 40){//±¬±í40´Î£¬¾­¹ýÁË20ms
-		cnt = 0; ?//µ±100´Î±íÊ¾1s£¬ÖØÐÂÈÃcnt´Ó0¿ªÊ¼£¬¼ÆËãÏÂÒ»´ÎµÄ1s
+	if(cnt == 40){//çˆ†è¡¨40æ¬¡ï¼Œç»è¿‡äº†20ms
+		cnt = 0; ?//å½“100æ¬¡è¡¨ç¤º1sï¼Œé‡æ–°è®©cntä»Ž0å¼€å§‹ï¼Œè®¡ç®—ä¸‹ä¸€æ¬¡çš„1s
 		sg90_con = 1;
 	}
 }
